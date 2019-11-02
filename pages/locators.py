@@ -18,3 +18,7 @@ class ProductPageLocators():
 	MESSAGE_IF_ADD_TO_BASKET = (By.CSS_SELECTOR, "div#messages div.alertinner:nth-child(2)" )
 	MESSAGE_NAME_PRODUCT = (By.CSS_SELECTOR, "div#messages div.alertinner:nth-child(2)>strong" )
 	MESSAGE_PRICE_BASKET = (By.CSS_SELECTOR, "div#messages div.alert-info>div.alertinner strong" )
+
+class BasePageLocators():
+	LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+	LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")

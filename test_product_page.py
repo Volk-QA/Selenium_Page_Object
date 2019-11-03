@@ -74,6 +74,7 @@ class TestUserAddToBasketFromProductPage():
 	def test_user_cant_see_success_message(self, browser):
 		page = ProductPage(browser, link)
 		page.open()
+		page.should_be_authorized_user()
 		page.should_not_be_success_message()
 
 	@pytest.mark.need_review

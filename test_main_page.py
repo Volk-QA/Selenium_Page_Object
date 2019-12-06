@@ -5,7 +5,7 @@ import pytest
 import allure
 link = "http://selenium1py.pythonanywhere.com/"
 
-@allure.feature('critical')
+@allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.login_guest
 class TestLoginFromMainPage():
 	def test_guest_can_go_to_login_page(self, browser): 
@@ -19,7 +19,7 @@ class TestLoginFromMainPage():
 		page.open()
 		page.should_be_login_link()
 
-@allure.feature('critical')
+@allure.severity(allure.severity_level.CRITICAL)
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
 	page = MainPage(browser, link)
 	page.open()

@@ -20,7 +20,6 @@ def browser(request):
 	options = Options()
 	options.add_experimental_option('prefs', {'intl.accept_languages': lang})
 	print('\nstart Chrome browser...')
-    # browser = webdriver.Chrome(options=options)
 	browser = webdriver.Remote(
 	command_executor="http://localhost:4444/wd/hub",
 	desired_capabilities=capabilities,

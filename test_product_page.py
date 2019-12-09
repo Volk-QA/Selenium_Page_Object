@@ -8,7 +8,6 @@ import allure
 link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
 reg_link ="http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"
 
-@allure.severity(allure.severity_level.CRITICAL)
 @allure.feature('Parameterize')
 @pytest.mark.parametrize('offer', [0, 1, 2, 3, 4, 5, 6,
                                   pytest.param(7, marks=pytest.mark.xfail),
@@ -21,7 +20,6 @@ def test_guest_can_add_product_to_basket(browser, offer):
 	page.solve_quiz_and_get_code()
 	page.check_add_to_basket_true()
 
-@allure.severity(allure.severity_level.TRIVIAL)
 @allure.feature('Xfail')
 @pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
@@ -30,13 +28,11 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
 	page.add_to_basket()
 	page.should_not_be_success_message()
 
-@allure.severity(allure.severity_level.TRIVIAL)
 def test_guest_cant_see_success_message(browser):
 	page = ProductPage(browser, link)
 	page.open()
 	page.should_not_be_success_message()
 
-@allure.severity(allure.severity_level.TRIVIAL)
 @allure.feature('Xfail')
 @pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
@@ -45,14 +41,12 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
 	page.add_to_basket()
 	page.should_element_is_disappeared()
 
-@allure.severity(allure.severity_level.CRITICAL)
 def test_guest_should_see_login_link_on_product_page(browser):
 	link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 	page = ProductPage(browser, link)
 	page.open()
 	page.should_be_login_link()
 
-@allure.severity(allure.severity_level.CRITICAL)
 def test_guest_can_go_to_login_page_from_product_page(browser):
 	page = ProductPage(browser, link)
 	page.open()
@@ -60,7 +54,6 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
 	login_page = LoginPage(browser, browser.current_url)
 	login_page.should_be_login_page()
 
-@allure.severity(allure.severity_level.CRITICAL)
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 	page = ProductPage(browser, link)
 	page.open()
@@ -68,11 +61,9 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 	page = BasketPage(browser, browser.current_url)
 	page.check_basket()
 
-@allure.severity(allure.severity_level.NORMAL)
 @pytest.mark.user_add_to_basket
 class TestUserAddToBasketFromProductPage():
 	@pytest.fixture(scope="function", autouse=True)
-	@allure.step
 	def setup(self, browser):
 		email = str(time.time()) + "@fakemail.org"
 		password = str(time.time()) + "password"
@@ -81,14 +72,12 @@ class TestUserAddToBasketFromProductPage():
 		login_page.should_be_login_page()
 		login_page.register_new_user(email, password)
 	
-	@allure.step
 	def test_user_cant_see_success_message(self, browser):
 		page = ProductPage(browser, link)
 		page.open()
 		page.should_be_authorized_user()
 		page.should_not_be_success_message()
 
-	@allure.step
 	def test_user_can_add_product_to_basket(self, browser):
 		page = ProductPage(browser, link)
 		page.open()
